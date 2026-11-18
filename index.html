@@ -33,7 +33,7 @@
 <script>
 'use strict';
 const people=['Ayo','Aya','Curro','Bea','Andrea','Álvaro','Alejandro','Juanma','María','Pablo','Samuel','Cristina','Marcelo','Nacho Uriel','Dani','Nacho A','Lucía','Javi'];
-const phrases=['«Florentino, dimisión» — Aya','«La culpa es de la prensa» — Javi','«Qué malo, qué malo, qué bueno, qué bueno» — Álvaro','«La mente domina al cuerpo» — Ayo','«¿Traes viruta?» — Curro'];
+const phrases=['«Florentino, dimisión» — Aya','«La culpa es de la prensa» — Javi','«Qué malo, qué malo, qué bueno, qué bueno» — Álvaro','«La mente domina al cuerpo» — Ayo','«¿Traes viruta?» — Curro','«La nave de little esiten la quelia» — Alejandro','«¡Perro suelto!» — Ayo','«Ayita, te quiero mucho, ¿me dejas el iPad?» — Dani','«Me da igual» — Nacho Uriel','«………………………………» — Juanma'];
 const defaults=[
 {id:'cunado',name:'El Cuñado Supremo',description:'Hay personas que tienen una opinión. Y luego está quien tiene una opinión sobre absolutamente TODO. Economía, política, fútbol, medicina, fontanería o física cuántica.',type:'people',allowed:[],subtitle:'Premio a la sabiduría no solicitada',extra:'Da igual el tema: siempre sabe más que tú. Nunca duda, jamás se equivoca y, si los hechos le contradicen, peor para los hechos.',question:'¿Quién merece el título de Cuñado Supremo de la familia Adrada?'},
 {id:'sobada',name:'La Sobada de Oro',description:'Hay quien ve el fútbol y hay quien utiliza el fútbol como una sofisticada técnica de relajación. Se sienta con ilusión, comenta la alineación y, antes del minuto veinte, ya está roncando.',type:'people',allowed:[],subtitle:'Premio a la mejor actuación inconsciente',extra:'Eso sí, si alguien cambia de canal, despierta indignado: «¡Que lo estoy viendo!».',question:'¿Quién ha protagonizado las dormidas más memorables delante del fútbol?'},
@@ -52,6 +52,37 @@ function read(){try{const d=JSON.parse(localStorage.getItem(storeKey));if(d&&Arr
 let data=read();data.photos=data.photos||{};
 // Añadir los nuevos textos sin sobrescribir descripciones que ya haya editado la familia.
 data.categories.forEach((c,i)=>{const base=defaults.find(x=>x.id===c.id);if(!base)return;const oldDescriptions=['Para quien tiene opinión sobre todo y nunca pierde la oportunidad de dar una lección.', 'Para quien acumula las mayores dormidas viendo el fútbol.', 'Para quien siempre llega tarde, aunque lleve dos horas diciendo que ya sale.', 'Elige la frase más memorable de la historia familiar.', 'Para quien aguanta hasta el final de las fiestas y nunca quiere retirarse.', 'Para quien nunca contesta al teléfono ni a los WhatsApp.', 'Para quien siempre se olvida de pagar o de devolver ese Bizum.', 'Para quien ya utiliza ChatGPT hasta para contestar el WhatsApp más sencillo.', 'Para quien considera que todo era mejor antes.', 'Para quien intenta arreglar algo y termina provocando una avería mayor.'];if(c.description===oldDescriptions[i])c.description=base.description;if(c.subtitle===undefined)c.subtitle=base.subtitle;if(c.extra===undefined)c.extra=base.extra;if(c.question===undefined)c.question=base.question});
+// Añadir candidaturas nuevas a los navegadores que ya tienen guardada la V5.
+// No restaurar frases eliminadas manualmente por el organizador.
+const phraseMigrationKey='adrada_awards_phrases_v6_migrated';
+if(!localStorage.getItem(phraseMigrationKey)){
+  const category=data.categories.find(c=>c.id==='frase');
+  if(category){
+    const additions=phrases.slice(5);
+    additions.forEach(p=>{if(!category.allowed.includes(p))category.allowed.push(p)});
+    localStorage.setItem(storeKey,JSON.stringify(data));
+  }
+  localStorage.setItem(phraseMigrationKey,'1');
+}
+// V7: corregir la autoría del iPad e incorporar el silencio de Juanma.
+// Mantener las demás frases y las votaciones de prueba existentes.
+const phraseMigrationV7='adrada_awards_phrases_v7_migrated';
+if(!localStorage.getItem(phraseMigrationV7)){
+  const category=data.categories.find(c=>c.id==='frase');
+  if(category){
+    const oldIpad='«Ayita, te quiero mucho, ¿me dejas el iPad?»';
+    const newIpad='«Ayita, te quiero mucho, ¿me dejas el iPad?» — Dani';
+    const silence='«………………………………» — Juanma';
+    const idx=category.allowed.indexOf(oldIpad);
+    if(idx!==-1) category.allowed[idx]=newIpad;
+    if(!category.allowed.includes(silence)) category.allowed.push(silence);
+    category.allowed=[...new Set(category.allowed)];
+    Object.values(data.votes).forEach(v=>{if(v&&v.frase===oldIpad)v.frase=newIpad});
+    saveV7();
+  }
+  localStorage.setItem(phraseMigrationV7,'1');
+}
+function saveV7(){localStorage.setItem(storeKey,JSON.stringify(data))}
 let voter=null,step=0,answers={},tab='categories',editingFromReview=false;
 const $=id=>document.getElementById(id);const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function save(){localStorage.setItem(storeKey,JSON.stringify(data))}

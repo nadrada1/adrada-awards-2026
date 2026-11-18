@@ -1,1 +1,5 @@
-ADRADA AWARDS V5 - Demo local. Subir index.html a GitHub Pages. Los votos y textos se guardan solo en este navegador. No usar como votación real hasta conectar Supabase.
+ADRADA AWARDS 2026 - V7
+Sube index.html a la raiz del repositorio GitHub Pages.
+La V7 añade el silencio de Juanma y atribuye la frase del iPad a Dani.
+Los datos y votos son de prueba y se guardan localmente.
+En la futura version con Supabase se podran editar las frases desde administracion para todos los usuarios.
