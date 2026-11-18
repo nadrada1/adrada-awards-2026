@@ -1,1 +1,1 @@
-ADRADA AWARDS V4 - Demo local. Sube index.html al repositorio GitHub reemplazando la version anterior. Los votos siguen guardandose solo en cada navegador.
+ADRADA AWARDS V5 - Demo local. Subir index.html a GitHub Pages. Los votos y textos se guardan solo en este navegador. No usar como votación real hasta conectar Supabase.
