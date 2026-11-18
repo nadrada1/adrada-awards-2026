@@ -1,6 +1,1 @@
-ADRADA AWARDS V3 - DEMO LOCAL
-Abre index.html en Chrome o Safari.
-Códigos DEMO01 a DEMO18.
-Los votos y fotos de prueba solo se guardan en el navegador local.
-Para compartir con Javi y Lucía, enviar el ZIP o publicar index.html en GitHub Pages.
-NO usar para votaciones reales hasta integrar Supabase y seguridad.
+ADRADA AWARDS V4 - Demo local. Sube index.html al repositorio GitHub reemplazando la version anterior. Los votos siguen guardandose solo en cada navegador.
