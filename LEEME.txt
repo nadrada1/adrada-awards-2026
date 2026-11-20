@@ -1,5 +1,10 @@
-ADRADA AWARDS 2026 - V7
-Sube index.html a la raiz del repositorio GitHub Pages.
-La V7 añade el silencio de Juanma y atribuye la frase del iPad a Dani.
-Los datos y votos son de prueba y se guardan localmente.
-En la futura version con Supabase se podran editar las frases desde administracion para todos los usuarios.
+ADRADA AWARDS V8 — PRUEBA DE CONEXIÓN SUPABASE
+
+1. Mantiene los accesos DEMO01–DEMO18 y los votos de prueba en localStorage.
+2. En el pie, «Administrador Supabase»: iniciar sesión con email y contraseña de Supabase Auth.
+3. El administrador real puede editar títulos, subtítulos, descripciones y preguntas de los premios, y texto/autor de frases.
+4. La web de votación DEMO sigue leyendo datos locales; los cambios de Supabase aún NO se reflejan en el modo DEMO.
+5. La lista de candidaturas, fotografías, votos reales y códigos personales se implementarán en fases posteriores.
+6. No publicar fotos ni códigos privados en GitHub. Nunca incluir service_role ni secret keys en HTML.
+7. Para desplegar: sustituir index.html en la raíz del repositorio GitHub Pages.
+8. Para probar sin afectar a la web publicada, abrir index.html localmente o desplegarlo en una rama de pruebas.
