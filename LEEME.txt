@@ -1,10 +1,6 @@
-ADRADA AWARDS V8 — PRUEBA DE CONEXIÓN SUPABASE
-
-1. Mantiene los accesos DEMO01–DEMO18 y los votos de prueba en localStorage.
-2. En el pie, «Administrador Supabase»: iniciar sesión con email y contraseña de Supabase Auth.
-3. El administrador real puede editar títulos, subtítulos, descripciones y preguntas de los premios, y texto/autor de frases.
-4. La web de votación DEMO sigue leyendo datos locales; los cambios de Supabase aún NO se reflejan en el modo DEMO.
-5. La lista de candidaturas, fotografías, votos reales y códigos personales se implementarán en fases posteriores.
-6. No publicar fotos ni códigos privados en GitHub. Nunca incluir service_role ni secret keys en HTML.
-7. Para desplegar: sustituir index.html en la raíz del repositorio GitHub Pages.
-8. Para probar sin afectar a la web publicada, abrir index.html localmente o desplegarlo en una rama de pruebas.
+ADRADA AWARDS V9
+1. En Supabase > SQL Editor ejecutar PASO-1-SUPABASE.sql (antes de subir fotos).
+2. En GitHub sustituir index.html y publicar.
+3. Entrar en Administrador Supabase > Participantes y fotos.
+4. Subir una foto de prueba y comprobarla desde otro navegador con DEMO01.
+NOTAS: fotos públicas por URL, votos DEMO solo locales, aún NO hay votos oficiales ni resultados en directo.
