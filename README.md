@@ -1,31 +1,29 @@
-# ADRADA AWARDS 2026 — V10.4
+# ADRADA AWARDS 2026 — V10.5
 
-**Versión: V10.4**  
+**Versión: V10.5**  
 **Fecha: 21 de noviembre de 2026**
 
-## Cambios de interfaz
+## Novedades
 
-1. En la **votación oficial**, los botones **Siguiente** y **Atrás** desplazan la vista al inicio de la pregunta siguiente o anterior, también en móvil.
-2. Desde **Revisa tus votos**, pulsar **Editar** abre solo ese premio. Se añade **Guardar cambio y volver al resumen** y **Volver al resumen** para no tener que pasar por todas las preguntas otra vez.
-3. Seleccionar un candidato **no desplaza la pantalla**, para evitar saltos molestos.
-4. Se retiran de la pantalla pública los textos sobre versión, instrucciones DEMO y la entrada visible a la organización de pruebas. El botón de administración se presenta como **Administración**.
-5. Se conservan los códigos DEMO, las fotos, los códigos reales, el almacenamiento de votos y el panel de resultados.
+- Nueva introducción familiar con instrucciones claras para votar, revisar y modificar las elecciones.
+- En **Administración → Resultados en directo**, listado desplegable de cada familiar con sus votos individuales por categoría. Solo accesible para el administrador autenticado.
+- Clasificación por premio: tres primeros destacados y opción de consultar el resto. Se señalan los empates en tercer lugar y se muestran todos los empatados.
+- Se mantienen fotografías, códigos de votación, edición individual, modo DEMO y resultados actualizados cada 15 segundos.
 
-## Instalación
+## Instalación — dos pasos obligatorios
 
-En GitHub, repositorio `nadrada1/adrada-awards-2026`, usar **Add file → Upload files** y subir **`index.html`** y **`README.md`** de esta carpeta a la raíz. Confirmar con **Commit changes**. Comprobar luego desde `https://nadrada1.github.io/adrada-awards-2026/`.
+**1. Supabase (primero):** Edge Functions → `adrada-vote` → Code. Sustituir `index.ts` por `supabase/functions/adrada-vote/index.ts` de este ZIP y pulsar **Deploy updates**. Mantener desactivada la verificación JWT del gateway. No cambiar los secretos.
 
-**No hay que ejecutar SQL, cambiar Edge Functions, secretos ni permisos de Supabase.** La función desplegada V10.3 permanece tal cual.
+**2. GitHub (después):** subir `index.html` y `README.md` de este ZIP a la raíz del repositorio `nadrada1/adrada-awards-2026` usando **Add file → Upload files** y confirmar con **Commit changes**.
 
-## Pruebas recomendadas
+**No ejecutar ningún SQL**, ni tocar las claves, ni generar códigos nuevos.
 
-- Entrar con el código oficial previamente creado.
-- Elegir candidato y pulsar **Siguiente**: debe empezar arriba la siguiente categoría.
-- Llegar a **Revisa tus votos**, tocar **Editar** en una categoría intermedia, cambiarla y pulsar **Guardar cambio y volver al resumen**. Debe regresar directamente al resumen.
-- Pulsar **Guardar mis votos oficiales** y verificar que los resultados actualizan el recuento, sin sumar votos duplicados.
-- Verificar que la página de inicio ya no muestra instrucciones ni números de versión.
-- Opcional: `DEMO01` sigue operativo, pero ya no se anuncia en la pantalla pública.
+## Prueba
 
-## Nota
+1. Entrar al sitio y leer la nueva bienvenida.
+2. Iniciar sesión como administrador y abrir Resultados en directo.
+3. Expandir el nombre de Nacho A y comprobar que muestra las elecciones oficiales guardadas, sin valores inventados.
+4. Revisar los tres finalistas visibles en una categoría. Si existe empate en tercer lugar, verificar que aparece indicado.
+5. Confirmar que otro familiar con su código personal no puede acceder a esos resultados.
 
-Esta entrega modifica solo el HTML/JavaScript del navegador. No altera votos ya registrados ni la base de datos.
+**Privacidad:** esta versión muestra los votos individuales únicamente al administrador autenticado. Antes de abrir la votación a la familia, es recomendable explicar expresamente que el organizador puede consultar quién votó a quién.
